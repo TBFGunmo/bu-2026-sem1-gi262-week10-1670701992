@@ -1,4 +1,6 @@
 using System;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
+using UnityEngine;
 
 namespace MidtermExam.Prob03
 {
@@ -17,7 +19,29 @@ namespace MidtermExam.Prob03
         public int AS03_CountTotalNode(Node root)
         {
             // TODO: เขียนคำตอบแทนคำสั่ง throw ด้านล่าง
-            throw new NotImplementedException();
+            if (root == null) return 0;
+
+            if (root.left == null && root.right == null) 
+            {
+                return 1;
+            }
+
+            Node right = root.right;
+            Node left = root.left;
+
+            if (left != null && right == null) 
+            {
+                return 1 + AS03_CountTotalNode(left);
+            }
+            else if (left == null && right != null) 
+            {
+                return 1 + AS03_CountTotalNode(right);
+            }
+
+
+            return 1 + AS03_CountTotalNode(left) + AS03_CountTotalNode(right);
         }
+
+
     }
 }

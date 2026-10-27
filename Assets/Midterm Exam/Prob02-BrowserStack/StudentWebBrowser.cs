@@ -30,7 +30,50 @@ namespace MidtermExam.Prob02
         public void Open(string url)
         {
             // TODO: เขียนคำตอบแทนคำสั่ง throw exception ด้านล่าง
-            throw new NotImplementedException();
+            if (url == null) 
+            {
+                return;
+            }
+
+            //check empty " "
+            string newString = "";
+            bool isEmpty = false;
+
+            foreach (char textUrl in url)
+            {
+                if (textUrl == ' ')
+                {
+                    continue;
+                }
+                else 
+                {
+                    isEmpty = true;
+                    newString += textUrl;
+                }
+            }
+
+            if (newString == string.Empty) 
+            {
+                return;
+            }
+
+            if (newString == "\t")
+            {
+                return;
+            }
+
+            newString = url;
+
+            if (currentUrl == string.Empty)
+            {
+                currentUrl = newString;
+            }
+            else 
+            {
+                backHistory.Push(currentUrl);
+                forwardHistory.Clear();
+                currentUrl = newString;
+            }
         }
 
         /// <summary>ย้อนกลับไปยังหน้าล่าสุดในประวัติย้อนกลับหนึ่งขั้น</summary>
@@ -41,7 +84,22 @@ namespace MidtermExam.Prob02
         public void Back()
         {
             // TODO: เขียนคำตอบแทนคำสั่ง throw exception ด้านล่าง
-            throw new NotImplementedException();
+            if (backHistory == null) 
+            {
+                return;
+            }
+
+            if (backHistory.Count <= 0)
+            {
+                return;
+            }
+            else 
+            {
+                forwardHistory.Push(currentUrl);
+                currentUrl = backHistory.Pop();
+            }
+
+
         }
 
         /// <summary>ไปข้างหน้าไปยังหน้าล่าสุดในประวัติไปข้างหน้าหนึ่งขั้น</summary>
@@ -52,7 +110,20 @@ namespace MidtermExam.Prob02
         public void Forward()
         {
             // TODO: เขียนคำตอบแทนคำสั่ง throw exception ด้านล่าง
-            throw new NotImplementedException();
+            if (forwardHistory == null)
+            {
+                return;
+            }
+
+            if (forwardHistory.Count <= 0)
+            {
+                return;
+            }
+            else 
+            {
+                backHistory.Push(currentUrl);
+                currentUrl = forwardHistory.Pop();
+            }
         }
 
         /// <summary>อ่าน URL ของหน้าปัจจุบัน โดยไม่เปลี่ยนหน้าหรือประวัติใด ๆ</summary>
@@ -61,7 +132,17 @@ namespace MidtermExam.Prob02
         {
             // TODO: คืนค่าหน้าที่ติดตามอยู่ใน currentUrl แทนคำสั่ง throw ด้านล่าง
             // เมธอดนี้ใช้เพื่ออ่านสถานะเท่านั้น จึงไม่ต้อง Push(), Pop() หรือ Clear() ประวัติ
-            throw new NotImplementedException();
+            if (currentUrl == string.Empty) 
+            {
+                return string.Empty;
+            }
+
+            if (currentUrl == null) 
+            {
+                return string.Empty;
+            }
+
+            return currentUrl;
         }
     }
 }

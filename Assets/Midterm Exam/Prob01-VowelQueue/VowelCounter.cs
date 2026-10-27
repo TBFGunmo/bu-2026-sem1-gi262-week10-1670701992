@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.Assemblies;
+using UnityEngine.Assertions.Must;
 
 namespace MidtermExam.Prob01
 {
@@ -23,7 +25,47 @@ namespace MidtermExam.Prob01
         public int AS01_CountVowels(Queue<string> alphabets)
         {
             // TODO: เขียนคำตอบแทนคำสั่ง throw exception ด้านล่าง
-            throw new NotImplementedException();
+            
+            if (alphabets == null) 
+            {
+                return 0;
+            }
+
+            if (alphabets.Count <= 0) 
+            {
+                return 0;
+            }
+
+            int vowelCount = 0;
+            int queneCount = alphabets.Count;
+
+            for (int i = 0; i < queneCount; i++) 
+            {
+                string current = alphabets.Dequeue();
+                switch (current) 
+                {
+                    case "a":
+                        vowelCount += 1;
+                        break;
+                    case "e":
+                        vowelCount += 1;
+                        break;
+                    case "i":
+                        vowelCount += 1;
+                        break;
+                    case "o":
+                        vowelCount += 1;
+                        break;
+                    case "u":
+                        vowelCount += 1;
+                        break;
+                }
+                alphabets.Enqueue(current);
+
+            }
+
+            return vowelCount;
+
         }
     }
 }
